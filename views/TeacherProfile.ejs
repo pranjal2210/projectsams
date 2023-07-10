@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher | Students Attendance Management System</title>
+  <link rel="icon" type="image/x-icon" href="/images/logo.ico">
+  <script src="https://kit.fontawesome.com/f6549854b5.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/addteacher.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="/images/logo.jpg">
+      <h2><span>Students Attendance Management System - </span>SAMS</h2>
+    </div>
+    <nav class="navbar">
+      <a href="/landing/home">Logout<i class="fa-solid fa-arrow-right-from-bracket"></i></i></a>
+    </nav>
+  </header>
+  <!-- HEADER -->
+
+  <div class="addteacher-container">
+    <a href="/teacher/<%= teachers[0].tid %>" class="prevpage">
+      << Home</a>
+        <div class="addteacher-form">
+          <div class="addteacher-title">
+            <h2>Your Profile</h2>
+          </div>
+
+          <div class="add-teacher-form">
+            <% teachers.forEach((row)=> { %>
+              <form action="updateteacherprofile" method="POST" name="teacherprofile"
+                onsubmit="return validateProfile()">
+
+                <% if (message) { %>
+                  <div class="alert show">
+                    <span class="fa-solid fa-circle-exclamation"></span>
+                    <span class="msg">Warning: <%= message %></span>
+                    <span class="close-btn">
+                      <span class="fa-solid fa-times"></span>
+                    </span>
+                  </div>
+                  <% } %>
+                    <% if (message2){ %>
+                      <div class="alert show success">
+                        <span class="fa-solid fa-circle-check"></span>
+                        <span class="msg" >Success: <%= message2 %></span>
+                        <span class="close-btn">
+                          <span class="fa-solid fa-times"></span>
+                        </span>
+                      </div>
+                      <% } %>
+
+
+                        <div class="form-group" id="idofteacher">
+                          <label for="teacherid">Teacher ID<span>*</span></label>
+                          <input type="text" name="teacherid" required id="teacherid" value="<%= row.tid %>" disabled />
+                          <small class="formerror"></small>
+                        </div>
+
+                        <input type="hidden" name="tidauth" value=<%=row.tid %>>
+
+                        <div class="form-group" id="nameofteacher">
+                          <label for="teachername">Teacher Name<span>*</span></label>
+                          <input type="text" name="teachername" required id="teachername" value="<%= row.tname %>" />
+                          <small class="formerror"></small>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="teachergender">Gender<span>*</span></label>
+
+                          <div class="radio-btns">
+                            <input type="radio" name="teachergender" value="M" <%=row.gender=='M' ?'checked':'' %>
+                            required>
+                            <label for="teachergender">Male</label>
+                          </div>
+                          <div class="radio-btns">
+                            <input type="radio" name="teachergender" value="F" <%=row.gender=='F' ?'checked':'' %>
+                            required>
+                            <label for="teachergender">Female</label>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="tdob">Date of birth<span>*</span></label>
+                          <input type="date" name="tdob" required value=<%=row.tdob %> >
+                        </div>
+
+                        <div class="form-group select">
+                          <label for="teacherdept">Department<span>*</span></label>
+                          <select name="teacherdept" id="deptSelect" required disabled>
+                            <option value="">Select Department</option>
+                            <option value="1" <%=row.cid=='1' ?'selected':'' %> >Master of Computer Application</option>
+                            <option value="2" <%=row.cid=='2' ?'selected':'' %> >Computer Science Engineering</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group select">
+                          <label for="teacherdesg">Designation<span>*</span></label>
+                          <select name="teacherdesg" disabled>
+                            <option value="Professor" <%=row.designation=='Professor' ?'selected':'' %> >Professor
+                            </option>
+                            <option value="Assistant Professor" <%=row.designation=='Assistant Professor' ?'selected':''
+                              %>
+                              >Assistant Professor </option>
+                            <option value="Visiting Faculty" <%=row.designation=='Visiting Faculty' ?'selected':'' %>
+                              >Visiting
+                              Faculty</option>
+                            <option value="Assistant Professor & Coordinator"
+                              <%=row.designation=='Assistant Professor & Coordinator' ?'selected':'' %> >Assistant
+                              Professor &
+                              Coordinator</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group" id="teacherhighqual">
+                          <label for="teacherhq">Highest Qualification<span>*</span></label>
+                          <input type="text" name="teacherhq" value="<%= row.highqual %>" disabled required />
+                          <small class="formerror"></small>
+                        </div>
+
+
+                        <div class="form-group" id="teacherphone">
+                          <label for="tphone">Mobile No.<span>*</span></label>
+                          <input type="phone" name="tphone" value="<%= row.tphone %>" required />
+                          <small class="formerror"></small>
+                        </div>
+
+                        <input type="hidden" name="temailauth" value=<%=row.temail %>>
+
+                        <div class="form-group" id="studentemail">
+                          <label for="temail">Email Id<span>*</span></label>
+                          <input type="email" name="temail" value=<%=row.temail %> required/>
+                          <small class="formerror"></small>
+                        </div>
+
+                        <div class="form-group" id="studentpass">
+                          <label for="tpass">Password<span>*</span></label>
+                          <input type="password" name="tpass" required />
+                        </div>
+
+                        <input type="hidden" name="tpassauth" value=<%= row.tpass %>>
+
+                        <div class="form-group" id="confirmpass">
+                          <label for="cpass">Confirm Password<span>*</span></label>
+                          <input type="text" name="cpass" required />
+                          <small class="formerror"></small>
+                        </div>
+
+                        <div class="add-btn-div">
+                          <button class="teacher-add-btn btn" type="submit"
+                            onclick="return confirm('Are you sure you want to save the changes?')">Save</button>
+                        </div>
+
+              </form>
+              <% }) %>
+          </div>
+        </div>
+  </div>
+
+  <script src="/javascripts/teacherprofile.js"></script>
+</body>
+
+</html>

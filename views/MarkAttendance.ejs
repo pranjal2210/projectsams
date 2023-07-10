@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student | Students Attendance Management System</title>
+  <script src="https://kit.fontawesome.com/f6549854b5.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/student.css">
+  <link rel="icon" type="image/x-icon" href="/images/logo.ico">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="/images/logo.jpg">
+      <h2><span>Students Attendance Management System - </span>SAMS</h2>
+    </div>
+    <nav class="navbar">
+      <a href="/landing/home">Logout<i class="fa-solid fa-arrow-right-from-bracket"></i></i></a>
+    </nav>
+  </header>
+  <!-- HEADER -->
+
+  <section class="studentpage">
+    <div class="studentpage-container">
+      <a href="/student/<%= idid %>" class="prevpage">
+        << Home</a>
+      <div class="att-container" style="margin-top: 6rem;">
+        <h3 style="margin-bottom: 1rem;">>> Mark Attendance</h3>
+        <table class="att-table" id="att_table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Course</th>
+              <th>Teacher</th>
+              <th>Subject</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+              <% if(mark.length> 0){ %>
+                <% mark.forEach((row)=> { %>
+                    <tr>               
+                      <td><% const correctDate=new Date(row.att_date).toLocaleDateString('es-CL') %><%= correctDate %></td>
+                      <td>
+                        <%= row.cname %>
+                      </td>
+                      <td>
+                        <%= row.tname %>
+                      </td>
+                      <td>
+                        <%= row.sub_name %>
+                      </td>
+
+                      <form action="marked" method="POST">
+                      <td>
+                        <% if(toDisable[0].present === null){ %>
+                          <div style="margin-bottom: 1rem;">
+                            <label for="presentstatus" style="margin-right: .5rem;">Present</label>
+                            <input type="radio" name="presentstatus" value="Present" required>
+                          </div>
+                          <div>
+                            <label for="presentstatus" style="margin-right: .5rem;">Absent</label>
+                            <input type="radio" name="presentstatus" value="Absent" required>
+                          </div>
+                        <% } else { %>
+                          <div style="margin-bottom: 1rem;">
+                            <label for="presentstatus" style="margin-right: .5rem;">Present</label>
+                            <input type="radio" name="presentstatus" value="Present" <%= toDisable[0].present == 'Present'?'checked':'disabled' %> required>
+                          </div>
+                          <div>
+                            <label for="presentstatus" style="margin-right: .5rem;">Absent</label>
+                            <input type="radio" name="presentstatus" value="Absent" <%= toDisable[0].present == 'Absent'?'checked':'disabled' %> required>
+                          </div>
+                        <% } %>
+                      </td>
+
+                      <td>
+                        <input type="hidden" name="idOfAtten" value=<%= row.att_id %>>
+                        <input type="hidden" name="idOfStudent" value=<%= idid %>>
+
+                        <% if(toDisable[0].present === null){ %>
+                          <button type="submit" class="saveBtn">MARK >></button>
+                        <% } else { %>
+                          <button class="saveBtn" disabled style="cursor: not-allowed; opacity: .5;">MARK >></button>
+                        <% } %>
+                      </form>
+                      </td>
+                    </tr>
+                      <% }) %>
+                        <% } else { %>
+                          <h3>Data not found</h3>
+                          <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

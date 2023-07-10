@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher | Students Attendance Management System</title>
+  <script src="https://kit.fontawesome.com/f6549854b5.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/teacher.css">
+  <link rel="icon" type="image/x-icon" href="/images/logo.ico">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="/images/logo.jpg">
+      <h2><span>Students Attendance Management System - </span>SAMS</h2>
+    </div>
+    <nav class="navbar">
+      <a href="/landing/home">Logout<i class="fa-solid fa-arrow-right-from-bracket"></i></i></a>
+    </nav>
+  </header>
+  <!-- HEADER -->
+
+  <section class="teacherpage">
+
+    <div class="teacherpage-container">
+      <div class="teacher-header">
+        <% const firstSpaceIndex=rows.tname.indexOf(" "); %>
+        <% const secondSpaceIndex = rows.tname.indexOf(" ", firstSpaceIndex + 1); %>
+        <%  const firstPart = rows.tname.substring(0, secondSpaceIndex); %>
+        <h3 class=" teacher-welcome">Welcome <%= firstPart %>,</h3>
+            <form action="teacherprofile" method="POST">
+              <input type="hidden" name="idOfTeacher" value=<%=rows.tid %>>
+              <button type="submit" class="teacher-profile">Profile&nbsp;<i class="fa-solid fa-user"></i></button>
+            </form>
+      </div>
+
+      <div class="att-container">
+        <h3 style="margin-bottom: 1rem;">>> Take Attendance</h3>
+
+        <table class="att-table" id="att_table">
+          <thead>
+            <tr>
+              <th>Attendance Date</th>
+              <th>Course</th>
+              <th>Subject</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (message) { %>
+              <div class="alert show">
+                <span class="fa-solid fa-circle-exclamation"></span>
+                <span class="msg">Warning: <%= message %></span>
+                <span class="close-btn">
+                  <span class="fa-solid fa-times"></span>
+                </span>
+              </div>
+              <% } %>
+                <% if (message2){ %>
+                  <div class="alert show success">
+                    <span class="fa-solid fa-circle-check"></span>
+                    <span class="msg">Success: <%= message2 %></span>
+                    <span class="close-btn">
+                      <span class="fa-solid fa-times"></span>
+                    </span>
+                  </div>
+                  <% } %>
+                    <form action="addattendance" method="POST">
+                      <input type="hidden" name="courseID" value=<%=rows.cid %>>
+                      <input type="hidden" name="subID" value=<%=rows.sub_id %>>
+                      <input type="hidden" name="teacherID" value=<%=rows.tid %>>
+                      <input type="hidden" name="attStatus" value="active">
+                      <tr>
+                        <td>
+                          <input type="date" name="att_date" id="dateInput" required>
+                        </td>
+                        <td>
+                          <%= rows.cname %>
+                        </td>
+                        <td>
+                          <%= rows.sub_name %>
+                        </td>
+
+                        <td class="action-btn">
+                          <button type="submit">
+                            <i class="fa-solid fa-circle-play att-start-btn"></i>
+                          </button>
+                          <!-- <a href="">
+                    <i class="fa-solid fa-times student-delete"></i>
+                  </a> -->
+                        </td>
+                      </tr>
+                    </form>
+          </tbody>
+        </table>
+
+      </div>
+      <div>
+        <h3 style="margin-bottom: 1rem;">>> Attendance</h3>
+
+        <div style="max-height: 22.5rem; overflow: auto; border-bottom: 1px solid var(--dark-blue);">
+          <table class="att-table" id="att_table">
+            <thead>
+              <tr>
+                <th>S. No.</th>
+                <th>Date</th>
+                <th>Course</th>
+                <th>Subject</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% let serialNumber=1; %>
+                <% if(attData.length> 0){ %>
+                  <% for (let i=0; i < attData.length; i++) { %>
+                    <form action="stopattendance" method="POST">
+                      <input type="hidden" name="teachID<%=[i]%>" value=<%=attData[0].tid %> >
+                      <input type="hidden" name="subID" value=<%=attData[0].sub_id %> >
+                      <tr>
+                        <td>
+                          <input type="hidden" name="attID" value=<%=attData[i].att_id %> >
+                          <%= serialNumber %>
+                        </td>
+                        <td>
+                          <% const correctDate=new Date(attData[i].att_date).toLocaleDateString('es-CL') %>
+                            <%= correctDate %>
+                        </td>
+                        <td>
+                          <%= rows.cname %>
+                        </td>
+                        <td>
+                          <%= rows.sub_name %>
+                        </td>
+                        <td>
+                          <%= attData[i].status %>
+                        </td>
+
+                        <td class="action-btn">
+                          <% if(attData[i].status=='active' ){ %>
+                            <button type="submit" name="updateBtn" value=<%=attData[i].att_id %> onclick="return
+                              confirm('Are you sure you want to stop?')">
+                              <i class="fa-solid fa-circle-stop att-stop-btn"></i>
+                            </button>
+                            <% } else { %>
+                              <!-- <button type="submit" name="updateBtn"> -->
+                                <a href="attreport/<%=attData[i].att_id %>">
+                                  <i class="fa-solid fa-file-lines att-report-btn"></i>
+                                </a>
+                              <!-- </button> -->
+                              <% } %>
+                        </td>
+                      </tr>
+                      <% serialNumber++; %>
+                      <% } %>
+                      <% } else { %>
+                        <h3>Data not found</h3>
+                        <% } %>
+                      </form>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+        
+        <div>
+          <h3 style="margin-bottom: 1rem;">>> Attendance Details <small style="font-weight: 500; font-size: .75rem; color: red;">*(date wise)</small></h3>
+          <form action="attendancedatewise" method="POST">
+            <input type="hidden" value="<%= rows.tid %>" name="teacherUID" id="">
+            <div style="display: flex; flex-direction: row; justify-content: space-between; background: #f0f0f0; padding: 1rem; border-radius: 8px;">
+              <div>
+                <label for="fromDate" style="margin-right: 1rem;">From Date:</label>
+                <input type="date" id="fromDate" name="fromDate" required style="padding: .5rem; border-radius: 6px;">
+              </div>
+              <div>
+                <label for="toDate" style="margin-right: 1rem;">To Date:</label>
+                <input type="date" id="toDate" name="toDate" required style="padding: .5rem; border-radius: 6px;">
+              </div>
+            
+              <button type="submit" class="saveBtn">Show Details</button>
+            </div>
+          </form>
+        </div>
+                
+        <div class="teacher-action">
+          <form action="studentdetails" method="POST">
+            <input type="hidden" name="idOfTeacher" value=<%=rows.tid %>>
+            <div class="admin-action-card">
+              <button type="submit">
+                <div class="card-title">
+                  <h3>Student Details >></h3>
+                </div>
+              </button>
+            </div>
+          </form>
+          <form action="issuenotice" method="POST">
+            <input type="hidden" name="idOfTeacher" value=<%=rows.tid %>>
+            <div class="admin-action-card">
+              <button type="submit">
+                <div class="card-title">
+                  <h3>Issue Notice >></h3>
+                </div>
+              </button>
+            </div>
+          </form>
+          <form action="adminnotices" method="POST">
+            <input type="hidden" name="idOfTeacher" value=<%=rows.tid %>>
+            <div class="admin-action-card">
+              <button type="submit">
+                <div class="card-title">
+                  <h3>Admin Notice >></h3>
+                </div>
+              </button>
+            </div>
+          </form>
+
+
+        </div>
+
+  </section>
+
+  <script>
+    const today = new Date().toISOString().split("T")[0];
+    document.getElementById("dateInput").setAttribute("min", today);
+  </script>
+</body>
+
+</html>

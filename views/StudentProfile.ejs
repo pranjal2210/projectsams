@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student | Students Attendance Management System</title>
+  <link rel="icon" type="image/x-icon" href="/images/logo.ico">
+  <script src="https://kit.fontawesome.com/f6549854b5.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/addstudent.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="/images/logo.jpg">
+      <h2><span>Students Attendance Management System - </span>SAMS</h2>
+    </div>
+    <nav class="navbar">
+      <a href="/landing/home">Logout<i class="fa-solid fa-arrow-right-from-bracket"></i></i></a>
+    </nav>
+  </header>
+  <!-- HEADER -->
+
+  <div class="addstudent-container">
+    <a href="/student/<%= students[0].enroll %>" class="prevpage">
+      << Home</a>
+        <div class="addstudent-form">
+          <div class="addstudent-title">
+            <h2>Your Profile</h2>
+          </div>
+
+          <div class="add-student-form">
+            <% students.forEach((row)=> { %>
+              <form action="updatestudentprofile" method="POST" name="studentprofile"
+                onsubmit="return validateProfile()">
+
+                <% if (message) { %>
+                  <div class="alert show">
+                    <span class="fa-solid fa-circle-exclamation"></span>
+                    <span class="msg">Warning: <%= message %></span>
+                    <span class="close-btn">
+                      <span class="fa-solid fa-times"></span>
+                    </span>
+                  </div>
+                  <% } %>
+                    <% if (message2){ %>
+                      <div class="alert show success">
+                        <span class="fa-solid fa-circle-check"></span>
+                        <span class="msg">Success: <%= message2 %></span>
+                        <span class="close-btn">
+                          <span class="fa-solid fa-times"></span>
+                        </span>
+                      </div>
+                      <% } %>
+
+
+                        <div class="form-group" id="stuenroll">
+                          <label for="studentenroll">Enrollment Number<span>*</span></label>
+                          <input type="text" name="studentenroll" required value="<%= row.enroll %>" disabled />
+                          <small class="formerror"></small>
+                        </div>
+
+                        <input type="hidden" name="enrollauth" value=<%=row.enroll %>>
+
+                        <div class="form-group" id="nameofstudent">
+                          <label for="studentname">Teacher Name<span>*</span></label>
+                          <input type="text" name="studentname" required value="<%= row.sname %>" />
+                          <small class="formerror"></small>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="studentgender">Gender<span>*</span></label>
+
+                          <div class="radio-btns">
+                            <input type="radio" name="studentgender" value="M" <%=row.gender=='M' ?'checked':'' %>
+                            required>
+                            <label for="studentgender">Male</label>
+                          </div>
+                          <div class="radio-btns">
+                            <input type="radio" name="studentgender" value="F" <%=row.gender=='F' ?'checked':'' %>
+                            required>
+                            <label for="studentgender">Female</label>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="sdob">Date of birth<span>*</span></label>
+                          <input type="date" name="sdob" required value=<%=row.sdob %> >
+                        </div>
+
+                        <div class="form-group select">
+                          <label for="studentcourse">Course<span>*</span></label>
+                          <select name="studentcourse" required disabled>
+                            <option value="">Select Department</option>
+                            <option value="1" <%=row.cid=='1' ?'selected':'' %> >Master of Computer Application</option>
+                            <option value="2" <%=row.cid=='2' ?'selected':'' %> >Computer Science Engineering</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group" id="studentphone">
+                          <label for="sphone">Mobile No.<span>*</span></label>
+                          <input type="phone" name="sphone" value="<%= row.sphone %>" required />
+                          <small class="formerror"></small>
+                        </div>
+
+                        <input type="hidden" name="semailauth" value=<%=row.semail %>>
+
+                        <div class="form-group" id="studentemail">
+                          <label for="semail">Email Id<span>*</span></label>
+                          <input type="email" name="semail" value=<%=row.semail %> required/>
+                          <small class="formerror"></small>
+                        </div>
+
+                        <div class="form-group" id="studentpass">
+                          <label for="spass">Password<span>*</span></label>
+                          <input type="password" name="spass" required />
+                        </div>
+
+                        <input type="hidden" name="spassauth" value=<%= row.spass %>>
+
+                        <div class="form-group" id="confirmpass">
+                          <label for="cpass">Confirm Password<span>*</span></label>
+                          <input type="text" name="cpass" required />
+                          <small class="formerror"></small>
+                        </div>
+
+                        <div class="add-btn-div">
+                          <button class="student-add-btn btn" type="submit"
+                            onclick="return confirm('Are you sure you want to save the changes?')">Save</button>
+                        </div>
+
+              </form>
+              <% }) %>
+          </div>
+        </div>
+  </div>
+
+  <script src="/javascripts/studentprofile.js"></script>
+</body>
+
+</html>

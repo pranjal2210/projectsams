@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | Students Attendance Management System</title>
+  <script src="https://kit.fontawesome.com/f6549854b5.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/stylesheets/main.css">
+  <link rel="stylesheet" href="/stylesheets/adminlogin.css">
+  <link rel="icon" type="image/x-icon" href="/images/logo.ico">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="/images/logo.jpg">
+      <h2><span>Students Attendance Management System - </span>SAMS</h2>
+    </div>
+    <nav class="navbar">
+      <a href="home">Home<i class="fa-solid fa-house"></i></a>
+    </nav>
+  </header>
+  <!-- HEADER -->
+
+  <section class="admin">
+    <div class="admin-container">
+      <div class="alert hide">
+        <span class="fa-solid fa-circle-exclamation"></span>
+        <span class="msg">Warning: This is warning.</span>
+        <span class="close-btn">
+          <span class="fa-solid fa-times"></span>
+        </span>
+      </div>
+      <h1>ADMIN LOGIN</h1>
+      <div class="admin-login-box">
+        <div class="admin-login-form" id="admin-login-form">
+          <form action="adminauth" method="POST">
+
+            <% if (message) { %>
+              <div class="alert show">
+                <span class="fa-solid fa-circle-exclamation"></span>
+                <span class="msg">Warning: <%= message %></span>
+                <span class="close-btn">
+                  <span class="fa-solid fa-times"></span>
+                </span>
+              </div>
+            <% } %>
+            
+            <label for="admin_email">Email or username</label>
+            <input type="email" id="admin-email" name="admin_email" required>
+            <label for="admin_pass">Password</label>
+            <input type="password" id="admin-pass" name="admin_pass" required>
+            <button type="submit" class="btn login-btn">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+
+</html>

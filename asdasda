@@ -1,0 +1,721 @@
+<section class="adminpage">
+  <div class="adminpage-container">
+    <div class="course-option">
+      <button class="course-btn active" id="mca-btn">MCA</button>
+      <button class="course-btn" id="mba-btn">MBA</button>
+      <button class="course-btn" id="cse-btn">BTECH CSE</button>
+    </div>
+
+    <div class="admin-col mca">
+      <div class="admin-left">
+        <div class="teachers">
+          <h2 class="teachers-title">TEACHERS
+            <hr>
+          </h2>
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Subject</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% data1.forEach((row)=> { %>
+                <tr>
+                  <td>
+                    <%= row.tname %>
+                  </td>
+                  <td>
+                    <%= row.sub_name %>
+                  </td>
+                  <td class="action-btn"><i class="ri-edit-box-line teacher-edit"></i><i
+                      class="ri-delete-bin-line teacher-delete"></i></td>
+                </tr>
+                <% }) %>
+            </tbody>
+          </table>
+          <div class="insert-container"><button class="teacher-insert-btn"><i class="ri-user-add-line"></i>Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="admin-right">
+        <div class="students">
+          <h2 class="students-title">STUDENTS
+            <hr>
+          </h2>
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Enrollment No.</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% data2.forEach((row)=> { %>
+                <tr>
+                  <td>
+                    <%= row.sname %>
+                  </td>
+                  <td>
+                    <%= row.enroll %>
+                  </td>
+                  <td class="action-btn"><i class="ri-edit-box-line student-edit"></i><i
+                      class="ri-delete-bin-line student-delete"></i></td>
+                </tr>
+                <% }) %>
+            </tbody>
+          </table>
+          <div class="insert-container"><button class="student-insert-btn"><i class="ri-user-add-line"></i>Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="admin-col mba" style="display: none;">
+      <div class="admin-left">
+        <div class="teachers">
+          <h2 class="teachers-title">TEACHERS
+            <hr>
+          </h2>
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Subject</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% data3.forEach((row)=> { %>
+                <tr>
+                  <td>
+                    <%= row.tname %>
+                  </td>
+                  <td>
+                    <%= row.sub_name %>
+                  </td>
+                  <td class="action-btn"><i class="ri-edit-box-line teacher-edit"></i><i
+                      class="ri-delete-bin-line teacher-delete"></i></td>
+                </tr>
+                <% }) %>
+            </tbody>
+          </table>
+          <div class="insert-container"><button class="teacher-insert-btn"><i class="ri-user-add-line"></i>Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="admin-right">
+        <div class="students">
+          <h2 class="students-title">STUDENTS
+            <hr>
+          </h2>
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Enrollment No.</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% data4.forEach((row)=> { %>
+                <tr>
+                  <td>
+                    <%= row.sname %>
+                  </td>
+                  <td>
+                    <%= row.enroll %>
+                  </td>
+                  <td class="action-btn"><i class="ri-edit-box-line student-edit"></i><i
+                      class="ri-delete-bin-line student-delete"></i></td>
+                </tr>
+                <% }) %>
+            </tbody>
+          </table>
+          <div class="insert-container"><button class="student-insert-btn"><i class="ri-user-add-line"></i>Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-col cse" style="display: none;">
+      <div class="admin-left">
+        <div class="teachers">
+          <h2 class="teachers-title">TEACHERS
+            <hr>
+          </h2>
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Subject</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% data5.forEach((row)=> { %>
+                <tr>
+                  <td>
+                    <%= row.tname %>
+                  </td>
+                  <td>
+                    <%= row.sub_name %>
+                  </td>
+                  <td class="action-btn"><i class="ri-edit-box-line teacher-edit"></i><i
+                      class="ri-delete-bin-line teacher-delete"></i></td>
+                </tr>
+                <% }) %>
+            </tbody>
+          </table>
+          <div class="insert-container"><button class="teacher-insert-btn"><i class="ri-user-add-line"></i>Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="admin-right">
+        <div class="students">
+          <h2 class="students-title">STUDENTS
+            <hr>
+          </h2>
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Enrollment No.</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% data6.forEach((row)=> { %>
+                <tr>
+                  <td>
+                    <%= row.sname %>
+                  </td>
+                  <td>
+                    <%= row.enroll %>
+                  </td>
+                  <td class="action-btn"><i class="ri-edit-box-line student-edit"></i><i
+                      class="ri-delete-bin-line student-delete"></i></td>
+                </tr>
+                <% }) %>
+            </tbody>
+          </table>
+          <div class="insert-container"><button class="student-insert-btn"><i class="ri-user-add-line"></i>Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<div class="add-popup-teacher">
+  <div class="card">
+    <div class="card-heading">
+      <h2>Add Teacher</h2>
+      <i class="ri-close-line teacher-close"></i>
+    </div>
+
+    <div class="add-teacher-form">
+      <form>
+        <input type="text" placeholder="Name" />
+        <input type="email" placeholder="Email Address" />
+        <input type="text" placeholder="Cousre Name" />
+        <div class="add-btn-div">
+          <button class="teacher-add-btn" type="submit">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="add-popup-student">
+  <div class="card">
+    <div class="card-heading">
+      <h2>Add Student</h2>
+      <i class="ri-close-line student-close"></i>
+    </div>
+    <div class="add-student-form">
+      <form>
+        <input type="text" placeholder="Name" />
+        <input type="email" placeholder="Email Address" />
+        <input type="text" placeholder="Cousre Name" />
+        <div class="add-btn-div">
+          <button class="student-add-btn" type="submit">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+.admin-col{
+display: flex;
+flex-direction: row;
+gap: 2rem;
+}
+
+.admin-right, .admin-left {
+padding: 1.5rem;
+width: 50%;
+background: #e0e0e0;
+border-radius: .5rem;
+box-shadow: 0 0 12px var(--light-bg);
+height: max-content;
+}
+
+.teachers-title, .students-title{
+font-size: 1.75rem;
+text-align: center;
+color: var(--dark-blue);
+}
+
+.teachers-title hr, .students-title hr{
+border: 1px solid var(--dark-blue);
+margin-bottom: 1rem;
+}
+
+.content-table{
+border-collapse: collapse;
+margin: 1.5rem 0 .5rem 0;
+font-size: 1rem;
+width: 100%;
+}
+
+.content-table thead tr{
+background: linear-gradient(var(--dark-blue), var(--blue));
+color: white;
+text-align: left;
+}
+
+.content-table th, .content-table td{
+padding: 1rem .5rem;
+}
+
+.content-table tbody tr{
+border-bottom: 1px solid #afafaf;
+}
+
+.content-table tbody tr:nth-of-type(even){
+background: #cccccc;
+}
+
+.content-table tbody tr:hover{
+background: #bebebe;
+}
+
+.content-table tbody tr:last-of-type{
+border-bottom: 2px solid var(--dark-blue);
+}
+
+.action-btn{
+display: flex;
+align-items: center;
+justify-content: center;
+gap: .5rem;
+font-size: 1.25rem;
+}
+
+th:last-child{
+display: flex;
+justify-content: center;
+}
+
+.action-btn i{
+cursor: pointer;
+}
+
+.teacher-edit:hover, .student-edit:hover{
+color: blue;
+}
+
+.teacher-delete:hover, .student-delete:hover{
+color: red;
+}
+
+.insert-container{
+display: flex;
+align-items: center;
+justify-content: center;
+margin-top: 2rem;
+}
+
+.teacher-insert-btn, .student-insert-btn, .teacher-add-btn, .student-add-btn{
+padding: .5rem 1rem;
+background: linear-gradient(var(--dark-blue), var(--blue));
+color: var(--white);
+font-size: 1rem;
+cursor: pointer;
+border-radius: .5rem;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: .5rem;
+}
+
+.add-popup-teacher {
+background: rgba(0, 0, 0, .5);
+width: 100vw;
+height: 100vh;
+position: fixed;
+top: 0;
+left: 0;
+z-index: 100;
+text-align: center;
+display: grid;
+place-items: center;
+display: none;
+justify-content: center;
+}
+
+.add-popup-student {
+background: rgba(0, 0, 0, .5);
+width: 100vw;
+height: 100vh;
+position: fixed;
+top: 0;
+left: 0;
+z-index: 100;
+text-align: center;
+display: grid;
+place-items: center;
+display: none;
+justify-content: center;
+}
+
+.card {
+align-items: center;
+justify-content: center;
+background: var(--white);
+padding: 2rem;
+border-radius: .5rem;
+width: 50%;
+}
+
+.card-heading{
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 1.5rem;
+}
+
+.card-heading h2, .card-heading i{
+color: var(--dark-blue);
+}
+
+.card-heading i{
+font-size: 1.75rem;
+cursor: pointer;
+}
+
+.add-teacher-form form, .add-student-form form{
+display: flex;
+flex-direction: column;
+gap: .75rem;
+}
+
+.add-teacher-form form::placeholder, .add-student-form form::placeholder{
+font-size: 1.1rem;
+color: var(--light-bg);
+font-weight: 500;
+}
+
+.add-teacher-form form input, .add-student-form form input{
+background: #f3f3f3;
+border: none;
+width: 100%;
+font-size: 1rem;
+padding: .5rem 1rem;
+border-radius: 6px;
+color: var(--light-bg);
+}
+
+.add-btn-div{
+display: flex;
+justify-content: center;
+}
+
+.course-option{
+display: flex;
+flex-direction: row;
+gap: 1rem;
+align-items: center;
+justify-content: center;
+}
+
+.course-btn{
+padding: .75rem 2rem;
+background: var(--light-white);
+color: var(--black);
+font-size: 1rem;
+cursor: pointer;
+border-radius: 8px;
+}
+
+.active {
+background: var(--blue);
+color: var(--white);
+}
+
+
+
+
+
+
+<div class="form-group">
+  <label for="designation">Designation<span>*</span></label>
+  <input type="text" name="designation" required />
+</div>
+<div class="form-group">
+  <label for="department">Department<span>*</span></label>
+  <input type="text" name="department" required />
+</div>
+<div class="form-group">
+  <label for="highqual">Highest Qualification<span>*</span></label>
+  <input type="text" name="highqual" required />
+</div>
+<div class="form-group">
+  <label for="tphone">Mobile No.<span>*</span></label>
+  <input type="tel" name="tphone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* GET home page. */
+// router.get('/', function(req, res, next) {
+// res.render('adminpage');
+// });
+
+// router.get('/', (req, res) => {
+// query = 'SELECT tname, sub_name FROM teacher NATURAL JOIN subject';
+// pool.query(query, (err, results, fields) => {
+// if (err) throw err;
+// res.render('adminpage.ejs', { items: results });
+// });
+// });
+
+// const section1 = 'SELECT tname, sub_name FROM teacher NATURAL JOIN subject where cid=1';
+// const section2 = 'SELECT enroll, sname FROM student where cid=1';
+// const mbaTeacher = 'SELECT tname, sub_name FROM teacher NATURAL JOIN subject where cid=2';
+// const mbaStudent = 'SELECT enroll, sname FROM student where cid=2';
+// const cseTeacher = 'SELECT tname, sub_name FROM teacher NATURAL JOIN subject where cid=3';
+// const cseStudent = 'SELECT enroll, sname FROM student where cid=3';
+
+// pool.query( , (error, results1) => {
+// if (error) throw error;
+// pool.query(mcaStudent, (error, results2) => {
+// if (error) throw error;
+// pool.query(mbaTeacher, (error, results3) => {
+// if (error) throw error;
+// pool.query(mbaStudent, (error, results4) => {
+// if (error) throw error;
+// pool.query(cseTeacher, (error, results5) => {
+// if (error) throw error;
+// pool.query(cseStudent, (error, results6) => {
+// if (error) throw error;
+
+// router.get('/', (req, res) => {
+// res.render('adminpage.ejs', { mcaTeachers: results1, mcaStudents: results2, mbaTeachers: results3, mbaStudents:
+results4, ycseTeachers: results5, cseStudents: results6 });
+// });
+
+// });
+// });
+// });
+// });
+// });
+// });
+
+// let data1, data2, data3, data4, data5, data6, data7, data8;
+
+// pool.query('SELECT tname , sub_name FROM teacher NATURAL JOIN subject where cid=1', (error, results1) => {
+// if (error) throw error;
+// data1 = results1;
+// });
+
+// pool.query('SELECT enroll, sname FROM student where cid=1', (error, results2) => {
+// if (error) throw error;
+// data2 = results2;
+// });
+
+// pool.query('SELECT tname, sub_name FROM teacher NATURAL JOIN subject where cid=2', (error, results3) => {
+// if (error) throw error;
+// data3 = results3;
+// });
+
+// pool.query('SELECT enroll, sname FROM student where cid=2', (error, results4) => {
+// if (error) throw error;
+// data4 = results4;
+// });
+
+// pool.query('SELECT tname, sub_name FROM teacher NATURAL JOIN subject where cid=3', (error, results5) => {
+// if (error) throw error;
+// data5 = results5;
+// });
+
+// pool.query('SELECT enroll, sname FROM student where cid=3', (error, results6) => {
+// if (error) throw error;
+// data6 = results6;
+// });
+
+
+// pool.query(, (error, results1) => {
+// if (error) throw error;
+// pool.query(mcaStudent, (error, results2) => {
+// if (error) throw error;
+
+
+
+
+var express = require('express');
+var router = express.Router();
+var pool = require('./db');
+
+
+router.get('/', function (req, res, next) {
+  res.render('resumedetails');
+});
+
+
+// router.get('/', (req, res) => {
+//   pool.query('SELECT * from resume_table where id=?', [req.body.user_id], (error, result1) => {
+//     if (error) throw error;
+//     pool.query('UPDATE resume_table SET name = ?, objectives = ?, dob = ? where id = ?', [req.body.user_id], (error, result2) => {
+//       if (error) throw error;
+
+//       res.render('resumedetails', { resDetails: data1});
+//     });
+//   });
+// });
+
+
+module.exports = router;
+
+
+
+pool.query(`SELECT * FROM attendance natural join course natural join subject natural join teacher where att_id=? and status='active'`, [req.body.idOfAtten], (error, results2) => {
+  if (error) throw error;
+
+  pool.query(`SELECT * FROM att_data where att_id=? and enroll=?`, [req.body.idOfAtten, req.body.idOfStu], (error, results3) => {
+    pool.query('select * from student where enroll=?', [req.body.idOfStu], (error, results6) => {
+
+      // console.log(req.body.idOfAtten);
+      // console.log(req.body.idOfStu);
+      // console.log(results6[0].enroll);
+
+      if (results3[0] == undefined) {
+        res.render('markattendance', { idid: results6, dataInserted: false, idofstudent: req.body.idOfStu, mark: results2, message: null, message2: null });
+      }
+
+      else if (results3[0].present == 'Present') {
+        res.render('markattendance', { idid: results6, dataInserted: true, idofstudent: req.body.idOfStu0, mark: results2, message: null, message2: null });
+      }
+
+      else {
+        res.render('markattendance', { idid: results6, dataInserted: false, idofstudent: req.body.idOfStu0, mark: results2, message: null, message2: false });
+      }
+    });
+  });
+});
+
+
+
+#include <stdio.h>
+  #include <stdlib.h>
+  #include <time.h>
+  #include <unistd.h>
+  
+  void sender() {
+      printf("Sender: Sending frames...\n");
+  
+      for (int i = 1; i <= 5; i++) {
+          printf("Sender: Sending frame %d\n", i);
+  
+          // Simulate transmission delay
+          sleep(1);
+  
+          // Simulate channel error
+          srand(time(NULL));
+          int randomNum = rand() % 10 + 1;
+          int error = randomNum % 2 == 0;
+  
+          if (error) {
+              printf("Sender: Frame %d lost!\n", i);
+              printf("Sender: Retransmitting frame %d\n", i);
+  
+              // Simulate retransmission delay
+              sleep(1);
+          } else {
+              printf("Receiver: Received frame %d\n", i);
+          }
+      }
+  
+      printf("Sender: All frames sent.\n");
+  }
+  
+  void receiver() {
+      printf("Receiver: Waiting for frames...\n");
+  
+      for (int i = 1; i <= 5; i++) {
+          // Simulate transmission delay
+          sleep(1);
+  
+          // Simulate channel error
+          srand(time(NULL));
+          int randomNum = rand() % 10 + 1;
+          int error = randomNum % 2 == 0;
+  
+          if (error) {
+              printf("Receiver: Frame %d lost!\n", i);
+              printf("Receiver: Requesting retransmission of frame %d\n", i);
+  
+              // Simulate retransmission delay
+              sleep(1);
+  
+              printf("Sender: Retransmitting frame %d\n", i);
+  
+              // Simulate re-reception delay
+              sleep(1);
+          } else {
+              printf("Receiver: Received frame %d\n", i);
+          }
+      }
+  
+      printf("Receiver: All frames received.\n");
+  }
+  
+  int main() {
+      pid_t pid = fork();
+  
+      if (pid == 0) {
+          // Child process represents the sender
+          sender();
+      } else if (pid > 0) {
+          // Parent process represents the receiver
+          receiver();
+      } else {
+          // Error occurred during forking
+          fprintf(stderr, "Fork failed\n");
+          return 1;
+      }
+  
+      return 0;
+  }

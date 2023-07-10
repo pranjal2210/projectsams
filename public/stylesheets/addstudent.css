@@ -1,0 +1,83 @@
+.addstudent-container {
+  padding: 7% 10% 3% 10%;
+}
+
+.addstudent-form{
+  width: 40%;
+  margin: 0 auto;
+}
+
+.addstudent-title{
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--dark-blue);
+}
+
+
+.add-teacher-form form, .add-student-form form{
+  display: flex;
+  flex-direction: column;
+}
+
+.add-teacher-form form::placeholder, .add-student-form form::placeholder{
+  font-size: 1.1rem;
+  color: var(--light-bg);
+  font-weight: 500;
+}
+
+.add-teacher-form form input, .add-student-form form input{
+  background: #f3f3f3;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  padding: .5rem 1rem;
+  border-radius: 6px;
+  color: var(--light-bg);
+}
+
+.add-btn-div{
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.add-student-form label{
+  font-size: 1.25rem;
+  color: var(--dark-blue);
+}
+
+.add-student-form label span{
+  color: red;
+}
+
+.form-group{
+  margin-bottom: 1.5rem;
+}
+
+.radio-btns{
+  display: inline-flex;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+.radio-btns input{
+  margin-right: .5rem;
+}
+
+.select{
+  display: flex;
+  flex-direction: column;
+}
+
+select{
+  background: #f3f3f3;
+  padding: .5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: var(--light-bg);
+}
+
+.formerror{
+  color: red;
+}

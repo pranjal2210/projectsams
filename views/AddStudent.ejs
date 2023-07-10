@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Students Attendance Management System</title>
+  <script src="https://kit.fontawesome.com/f6549854b5.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+  <link rel="icon" type="image/x-icon" href="/images/logo.ico">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/addstudent.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="/images/logo.jpg">
+      <h2><span>Students Attendance Management System - </span>SAMS</h2>
+    </div>
+    <nav class="navbar">
+      <a href="/landing/home">Logout<i class="fa-solid fa-arrow-right-from-bracket"></i></i></a>
+    </nav>
+  </header>
+  <!-- HEADER -->
+
+  <div class="addstudent-container">
+    <a href="/adminpage/dashboard" class="prevpage"><< Dashboard</a>&nbsp;&nbsp;<a href="/adminpage/students" class="prevpage"><< Students</a>
+    <div class="addstudent-form">
+      <div class="addstudent-title">
+        <h2>Add Student</h2>
+      </div>
+
+      <div class="add-student-form">
+        <form action="/adminpage/studentinsert" method="POST" name="studentaddform" onsubmit="return validateForm()">
+          <% if (message) { %>
+            <div class="alert show">
+              <span class="fa-solid fa-circle-exclamation"></span>
+              <span class="msg">Warning: <%= message %></span>
+              <span class="close-btn">
+                <span class="fa-solid fa-times"></span>
+              </span>
+            </div>
+          <% } %>
+          <div class="form-group" id="stuenroll">
+            <label for="enroll">Enrollment Number<span>*</span></label>
+            <input type="text" name="enroll" required/>
+            <small class="formerror"></small>
+          </div>
+          <div class="form-group" id="stuname">
+            <label for="studentname">Student Name<span>*</span></label>
+            <input type="text" name="studentname" required/>
+            <small class="formerror"></small>
+          </div>
+          <div class="form-group">
+            <label for="studentgender">Gender<span>*</span></label>
+            <div class="radio-btns">
+              <input type="radio" name="studentgender" value="M" required>
+              <label for="studentgender">Male</label>
+            </div>
+            <div class="radio-btns">
+              <input type="radio" name="studentgender" value="F" required>
+              <label for="studentgender">Female</label>
+            </div>
+          </div>
+          <div class="form-group select">
+            <label for="studentcourse">Course<span>*</span></label>
+            <select name="studentcourse">
+              <option value="1">Master of Computer Application</option>
+              <option value="2">Computer Science Engineering</option>
+            </select>
+          </div>
+          
+          <div class="form-group select">
+            <label for="sdob">Date of birth<span>*</span></label>
+            <input type="date" name="sdob" required>
+          </div>
+          
+
+          <div class="form-group" id="studentphone">
+            <label for="sphone">Mobile No.<span>*</span></label>
+            <input type="phone" name="sphone" required/>
+            <small class="formerror"></small>
+          </div>
+          
+
+          <div class="add-btn-div">
+            <button class="teacher-add-btn btn" type="submit">Add Student</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="/javascripts/addstudent.js"></script>
+
+
+</body>
+
+</html>

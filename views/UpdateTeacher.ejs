@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Students Attendance Management System</title>
+  <link rel="icon" type="image/x-icon" href="/images/logo.ico">
+  <script src="https://kit.fontawesome.com/f6549854b5.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/addteacher.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="/images/logo.jpg">
+      <h2><span>Students Attendance Management System - </span>SAMS</h2>
+    </div>
+    <nav class="navbar">
+      <a href="/landing/home">Logout<i class="fa-solid fa-arrow-right-from-bracket"></i></i></a>
+    </nav>
+  </header>
+  <!-- HEADER -->
+
+  <div class="addteacher-container">
+    <a href="/adminpage/dashboard" class="prevpage"><< Dashboard</a>&nbsp;&nbsp;<a href="/adminpage/teachers" class="prevpage"><< Teachers</a>
+    <div class="addteacher-form">
+      <div class="addteacher-title">
+        <h2>Update Teacher</h2>
+      </div>
+
+      <div class="add-teacher-form">
+        <% teachers.forEach((row)=> { %>
+        <form action="/adminpage/updateteacher/<%= row.tid %>" method="POST" name="teacheraddform" onsubmit="return validateForm()">
+          <div class="form-group" id="idofteacher">
+            <label for="teacherid">Teacher ID<span>*</span></label>
+            <input type="text" name="teacherid" required id="teacherid" value="<%= row.tid %>" disabled/>
+            <small class="formerror"></small>
+          </div>
+          <div class="form-group" id="nameofteacher">
+            <label for="teachername">Teacher Name<span>*</span></label>
+            <input type="text" name="teachername" required id="teachername" value="<%= row.tname %>" />
+            <small class="formerror"></small>
+          </div>
+          <div class="form-group">
+            <label for="teachergender">Gender<span>*</span></label>
+
+            <div class="radio-btns">
+              <input type="radio" name="teachergender" value="M" <%= row.gender == 'M'?'checked':'' %> required>
+              <label for="teachergender">Male</label>
+            </div>
+            <div class="radio-btns">
+              <input type="radio" name="teachergender" value="F" <%= row.gender == 'F'?'checked':'' %> required>
+              <label for="teachergender">Female</label>
+            </div>
+          </div>
+
+          <div class="form-group select">
+            <label for="tdob">Date of birth<span>*</span></label>
+            <input type="date" name="tdob" value="<%= row.tdob %>" required>
+
+          </div>
+
+          <div class="form-group select">
+            <label for="teacherdept">Department<span>*</span></label>
+            <select name="teacherdept" id="deptSelect" required>
+              <option value="">Select Department</option>
+              <option value="1" <%= row.cid == '1'?'selected':''  %> >Master of Computer Application</option>
+              <option value="2" <%= row.cid == '2'?'selected':''  %> >Computer Science Engineering</option>
+            </select>
+          </div>
+
+          <div class="form-group select">
+            <label for="subject">Subject<span>*</span></label>
+            <select id="subjectSelect" name="subject" required>
+              <!-- Options for Course 1 -->
+              <option value="">Select Subject</option>
+              <optgroup id="1Options" label="MCA Subjects">
+                <option value="1" <%= row.sub_id== '1'?'selected':''  %> >Software Engineering</option>
+                <option value="2" <%= row.sub_id== '2'?'selected':''  %> >Computer Networks</option>
+                <option value="3" <%= row.sub_id== '3'?'selected':''  %> >Internet of Things</option>
+                <option value="4" <%= row.sub_id== '4'?'selected':''  %> >Project Management</option>
+              </optgroup>
+              
+              <!-- Options for Course 2 -->
+              <optgroup id="2Options" label="CSE Subjects">
+                <option value="5" <%= row.sub_id== '5'?'selected':''  %> >Mathematics</option>
+                <option value="6" <%= row.sub_id== '6'?'selected':''  %> >Microprocessor</option>
+                <option value="7" <%= row.sub_id== '7'?'selected':''  %> >Distributed Database</option>
+              </optgroup>
+            </select>
+          </div>
+
+
+
+          <div class="form-group select">
+            <label for="teacherdesg">Designation<span>*</span></label>
+            <select name="teacherdesg">
+              <option value="Professor" <%= row.designation == 'Professor'?'selected':''  %> >Professor</option>
+              <option value="Assistant Professor" <%= row.designation == 'Assistant Professor'?'selected':''  %> >Assistant Professor	</option>
+              <option value="Visiting Faculty" <%= row.designation == 'Visiting Faculty'?'selected':''  %> >Visiting Faculty</option>
+              <option value="Assistant Professor & Coordinator" <%= row.designation == 'Assistant Professor & Coordinator'?'selected':''  %> >Assistant Professor & Coordinator</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="teacherhighqual">
+            <label for="teacherhq">Highest Qualification<span>*</span></label>
+            <input type="text" name="teacherhq" value="<%= row.highqual %>" required/>
+            <small class="formerror"></small>
+          </div>
+          <div class="form-group" id="teacherphone">
+            <label for="tphone">Mobile No.<span>*</span></label>
+            <input type="phone" name="tphone" value="<%= row.tphone %>" required/>
+            <small class="formerror"></small>
+          </div>
+          
+
+          <div class="add-btn-div">
+            <button class="teacher-add-btn btn" type="submit" onclick="return confirm('Are you sure you want to update?')">Update Teacher</button>
+          </div>
+
+        </form>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="/javascripts/addteacher.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#deptSelect').change(function() {
+        const selectedCourse = $(this).val();
+
+        // Hide all subject option groups
+        $('#subjectSelect optgroup').hide();
+
+        // Show the subject option group based on the selected course
+        $(`#${selectedCourse}Options`).show();
+      });
+    });
+  </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,179 @@
+.notice-container {
+  padding: 7% 16% 3% 16%;
+}
+
+.notice-form{
+  width: 100%;
+  margin: 0 auto;
+}
+
+.notice-title{
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--dark-blue);
+}
+
+.prev-notice-title{
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--dark-blue);
+}
+
+.prev-notice-title hr{
+  border: 1px solid var(--dark-blue);
+  margin-top: 1rem;
+}
+
+.formerror{
+  color: red;
+}
+
+
+.notice-box{
+  background: var(--white);
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 0 20px var(--black);
+  gap: 2rem;
+}
+
+.prev-notice-box{
+  background: var(--white);
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 0 20px var(--black);
+  margin-top: 4rem;
+}
+
+.notice-option{
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn2{
+  padding: .75rem 2rem;
+  background: var(--light-white);
+  color: var(--black);
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.active:hover{
+  background: var(--dark-blue);
+}
+
+.active{
+  background: var(--blue);
+  color: var(--white);
+}
+
+.student-notice-form, .teacher-notice-form, .all-notice-form{
+  padding: 0 1rem;
+}
+
+.student-notice-form form, .teacher-notice-form form, .all-notice-form form{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+.student-notice-form form label, .teacher-notice-form form label, .all-notice-form form label{
+  font-size: 1.3rem;
+  color: var(--light-bg);
+  font-weight: 500;
+}
+
+.student-notice-form form textarea, .teacher-notice-form form textarea, .all-notice-form form textarea{
+  background: #f3f3f3;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  padding: .5rem 1rem;
+  border-radius: 6px;
+  color: var(--light-bg);
+  resize: none;
+  height: 8rem;
+}
+
+.student-notice-form button[type=submit], .teacher-notice-form button[type=submit],  .all-notice-form button[type=submit]{
+  width: max-content;
+  border: none;
+  padding: .75rem 2rem;
+  margin: 0 auto;
+}
+
+.teacher-notice-form, .student-notice-form{
+  display: none;
+}
+
+
+.content-table{
+  border-collapse: collapse;
+  /* margin: 1.5rem 0 .5rem 0; */
+  font-size: 1rem;
+  width: 100%;
+}
+
+.content-table thead tr{
+  background: linear-gradient(var(--dark-blue), var(--blue));
+  color: white;
+  text-align: left;
+}
+
+.content-table th, .content-table td{
+  padding: .75rem .5rem;
+}
+
+.content-table tbody tr{
+  border-bottom: 1px solid #afafaf;
+}
+
+.content-table tbody tr:nth-of-type(even){
+  background: #e6e6e6;
+}
+
+.content-table tbody tr:hover{
+  background: #bebebe;
+}
+
+.content-table tbody tr:last-of-type{
+  border-bottom: 2px solid var(--dark-blue);
+}
+
+.action-btn{
+  text-align: center;
+  /* gap: 1rem; */
+  font-size: 1.25rem;
+}
+
+th:last-child{
+  display: flex;
+  justify-content: center;
+}
+
+.student-delete, .student-edit{
+  color: var(--dark-blue);
+}
+
+.teacher-edit:hover, .student-edit:hover{
+  color: blue;
+}
+
+.teacher-delete:hover, .student-delete:hover{
+  color: red;
+}
+
+.noticeCol{
+  width: 30rem;
+}

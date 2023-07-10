@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher | Students Attendance Management System</title>
+  <script src="https://kit.fontawesome.com/f6549854b5.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+  <link rel="icon" type="image/x-icon" href="/images/logo.ico">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/attreport.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="/images/logo.jpg">
+      <h2><span>Students Attendance Management System - </span>SAMS</h2>
+    </div>
+    <nav class="navbar">
+      <a href="/landing/home">Logout<i class="fa-solid fa-arrow-right-from-bracket"></i></i></a>
+    </nav>
+  </header>
+  <!-- HEADER -->
+
+  <div class="teacher-container">
+    <div class="teachers">
+      <a href="/teacher/<%= att[0].tid %>" class="prevpage"><< Home</a>
+      <h2 class="teachers-title">ATTENDANCE REPORT
+        <hr>
+      </h2>
+      <div style="display: flex; justify-content: space-between;">
+        <p>
+          <%= att[0].sub_name %>
+        </p>
+        <p>
+          <% const formattedDate = new Date(att[0].att_date).toLocaleDateString("es-CL"); %>
+          <%= formattedDate %>
+        </p>
+      </div>
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>S. No.</th>
+            <th>Enrollment Number</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Contact</th>
+            <th>Attendance Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% let serialNumber=1; %>
+            <% if(completeStudent.length> 0){ %>
+              <% completeStudent.forEach((row)=> { %>
+                <tr>
+                  <td>
+                    <%= serialNumber %>
+                  </td>
+                  <td>
+                    <%= row.enroll %>
+                  </td>
+                  <td>
+                    <%= row.sname %>
+                  </td>
+                  <td>
+                    <%= row.gender %>
+                  </td>
+                  <td>
+                    <%= row.sphone %>
+                  </td>
+                  <td>
+                    <%= row.present %>
+                  </td>
+
+                  <td>
+                    <form action="changestatus" method="POST">
+                      <input type="hidden" name="idAtten" id="" value="<%= att[0].att_id %>">
+                      <input type="hidden" name="idStu" id="" value="<%= row.enroll %>">
+                      <input type="hidden" name="pStatus" id="" value="<%= row.present %>">
+                      <button class="saveBtn">Change >></button>
+                    </form>
+                  </td>
+                </tr>
+                <% serialNumber++; %>  
+                <% }) %>
+                <% } else { %>
+                  <h3>Data not found</h3>
+                <% } %>
+        </tbody>
+      </table>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <p>Total Students: <%= completeStudent.length %></p>
+          <p>Present Students: <%= presentCount[0].count %></p>
+          <p>Absent Students: <%= absentCount[0].count %></p>
+          <% const perc = (presentCount[0].count / completeStudent.length) * 100 %>
+          <p>Attendance Percentage: <%= perc.toFixed(1) %>%</p>
+        </div>
+        <div>
+          <button onclick="window.print()" class="btn downloadBtn2">Download</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

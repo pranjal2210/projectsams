@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student | Students Attendance Management System</title>
+  <script src="https://kit.fontawesome.com/f6549854b5.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/student.css">
+  <link rel="icon" type="image/x-icon" href="/images/logo.ico">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="/images/logo.jpg">
+      <h2><span>Students Attendance Management System - </span>SAMS</h2>
+    </div>
+    <nav class="navbar">
+      <a href="/landing/home">Logout<i class="fa-solid fa-arrow-right-from-bracket"></i></i></a>
+    </nav>
+  </header>
+  <!-- HEADER -->
+
+  <section class="studentpage">
+
+    <div class="studentpage-container">
+      
+      <div class="student-header">
+        <h3 class="student-welcome">Welcome <%= rows[0].sname.split(' ')[0] %>,</h3>
+        <form action="studentprofile" method="POST">
+          <input type="hidden" name="enrollOfStudent" value=<%= rows[0].enroll %>>
+          <button type="submit" class="student-profile">Profile&nbsp;<i class="fa-solid fa-user"></i></button>
+        </form>
+      </div>
+
+
+      <div class="att-container">
+        <h3 style="margin-bottom: 1rem;">>> Mark Attendance</h3>
+        <% let serialNumber=1; %>
+        <% if(attData.length> 0){ %>
+        <table class="att-table" id="att_table">
+          <thead>
+            <tr>
+              <th>S. No.</th>
+              <th>Date</th>
+              <th>Course</th>
+              <th>Teacher</th>
+              <th>Subject</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            
+                <% attData.forEach((row)=> { %>
+                    <tr>
+                      <td>
+                        <input type="hidden" name="attID" value=<%=row.att_id %> >
+                        <%= serialNumber %>
+                      </td>
+                      <td><% const correctDate=new Date(row.att_date).toLocaleDateString('es-CL') %><%= correctDate %></td>
+                      <td>
+                        <%= row.cname %>
+                      </td>
+                      <td>
+                        <%= row.tname %>
+                      </td>
+                      <td>
+                        <%= row.sub_name %>
+                      </td>
+
+                      <td>
+                      <form action="markattendance" method="POST">
+
+                        <input type="hidden" name="idOfStu" value=<%= enroll %>>
+                        <input type="hidden" name="idOfAtten" value=<%= row.att_id %>>
+                        
+                        <button type="submit" class="saveBtn" value=<%= row.att_id %>>MARK >></button>
+                      </form>
+                      </td>
+                    </tr>
+                    <% serialNumber++; %>
+                      <% }) %>
+                        <% } else { %>
+                          <p>No active attendance</p>
+                          <% } %>
+          </tbody>
+        </table>
+      </div>
+
+      <div>  
+        <h3 style="margin-bottom: 1rem;">>> Teacher Notices</h3>
+        <div style="max-height: 20rem; overflow: auto;">
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>S. No.</th>
+                <th>Issued Date</th>
+                <th>Notice</th>
+                <th style="text-align: center;">Issuer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% let serialNum=1; %>
+                <% if(noticeDetails.length> 0){ %>
+                  <% noticeDetails.forEach((row)=> { %>
+                    <tr>
+                      <td>
+                        <%= serialNum %>
+                      </td>
+                      <td>
+                        <% const formattedDate = new Date(row.noticedate).toLocaleDateString("es-CL"); %>
+                        <%= formattedDate %>
+                      </td>
+                      <td style="width: 40rem;">
+                        <%= row.notice %>
+                      </td>
+                      <td style="text-align: center;">
+                        <% if(row.tname == null){ %>
+                          Admin
+                        <% } else { %>
+                          <% const firstSpaceIndex=row.tname.indexOf(" "); %>
+                          <% const secondSpaceIndex = row.tname.indexOf(" ", firstSpaceIndex + 1); %>
+                          <%  const firstPart = row.tname.substring(0, secondSpaceIndex); %>
+                          <%= firstPart %>
+                        <% } %>
+                      </td>
+                    </tr>
+                    <% serialNum++; %>  
+                    <% }) %>
+                    <% } else { %>
+                      <h3>Data not found</h3>
+                    <% } %>
+            </tbody>
+          </table> 
+        </div>
+
+      </div>
+
+      <div class="att-container">
+        <h3 style="margin-bottom: 1rem;">>> Teacher Details</h3>
+        <table class="content-table">
+          <thead>
+            <tr>
+              <th>S. No.</th>
+              <th>Name</th>
+              <th>Gender</th>
+              <th>Department</th>
+              <th>Subject</th>
+              <th>Email</th>
+              <th>Contact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% let serialNumb=1; %>
+              <% if(teacherDetails.length> 0){ %>
+                <% teacherDetails.forEach((row)=> { %>
+                  <tr>
+                    <td>
+                      <%= serialNumb %>
+                    </td>
+                    <td>
+                      <%= row.tname %>
+                    </td>
+                    <td>
+                      <%= row.gender %>
+                    </td>
+                    <td>
+                      <%= row.cname %>
+                    </td>
+                    <td>
+                      <%= row.sub_name %>
+                    </td>
+                    <td>
+                      <%= row.temail %>
+                    </td>
+                    <td>
+                      <%= row.tphone %>
+                    </td>
+                  </tr>
+                  <% serialNumb++; %>  
+                  <% }) %>
+                  <% } else { %>
+                    <h3>Data not found</h3>
+                  <% } %>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- <script src="javascripts/student.js"></script> -->
+</body>
+
+</html>

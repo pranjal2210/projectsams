@@ -1,0 +1,93 @@
+.teacher-container {
+  padding: 8% 10% 3% 10%;
+  background: var(--white);
+}
+
+.teachers-title{
+  font-size: 2rem;
+  text-align: center;
+  color: var(--dark-blue);
+}
+
+.teachers-title hr, .students-title hr{
+  border: 1px solid var(--dark-blue);
+  margin-bottom: 2rem;
+}
+
+.content-table{
+  border-collapse: collapse;
+  margin: 1.5rem 0 .5rem 0;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.content-table thead tr{
+  background: linear-gradient(var(--dark-blue), var(--blue));
+  color: white;
+  text-align: left;
+}
+
+.content-table th, .content-table td{
+  padding: 1rem .5rem;
+}
+
+.content-table tbody tr{
+  border-bottom: 1px solid #afafaf;
+}
+
+.content-table tbody tr:nth-of-type(even){
+  background: #e6e6e6;
+}
+
+.content-table tbody tr:hover{
+  background: #bebebe;
+}
+
+.content-table tbody tr:last-of-type{
+  border-bottom: 2px solid var(--dark-blue);
+}
+
+.action-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 1.25rem;
+}
+
+th:last-child{
+  display: flex;
+  justify-content: center;
+}
+
+.student-delete, .student-edit{
+  color: var(--dark-blue);
+}
+
+.teacher-edit:hover, .student-edit:hover{
+  color: blue;
+}
+
+.teacher-delete:hover, .student-delete:hover{
+  color: red;
+}
+
+.insert-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.teacher-insert-btn, .student-insert-btn, .teacher-add-btn, .student-add-btn{
+  padding: .5rem 1rem;
+  background: linear-gradient(var(--dark-blue), var(--blue));
+  color: var(--white);
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+}

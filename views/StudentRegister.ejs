@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Students Attendance Management System</title>
+  <script src="https://kit.fontawesome.com/f6549854b5.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+  <link rel="icon" type="image/x-icon" href="/images/logo.ico">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/addstudent.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="/images/logo.jpg">
+      <h2><span>Students Attendance Management System - </span>SAMS</h2>
+    </div>
+    <nav class="navbar">
+      <a href="/landing/home">Home<i class="fa-solid fa-house"></i></a>
+    </nav>
+  </header>
+  <!-- HEADER -->
+
+  <div class="addstudent-container">
+    <div class="addstudent-form">
+      <div class="addstudent-title">
+        <h2>Student Registration</h2>
+      </div>
+
+      <div class="add-student-form">
+        <form action="studentreg" method="POST" name="studentregform" onsubmit="return validateRegForm()">
+          
+          <div class="form-group" id="stuenroll">
+            <label for="enroll">Enrollment Number<span>*</span></label>
+            <input type="text" name="enroll" required/>
+            <small class="formerror"></small>
+          </div>
+          
+          <div class="form-group">
+            <label for="sdob">Date of birth<span>*</span></label>
+            <input type="date" name="sdob" required >
+          </div>
+
+          <div class="form-group" id="studentemail">
+            <label for="semail">Email Id<span>*</span></label>
+            <input type="email" name="semail" required/>
+            <small class="formerror"></small>
+          </div>
+
+          <div class="form-group" id="studentpass">
+            <label for="spass">Password<span>*</span></label>
+            <input type="password" name="spass" required/>
+          </div>
+
+          <div class="form-group" id="confirmpass">
+            <label for="cpass">Confirm Password<span>*</span></label>
+            <input type="text" name="cpass" required/>
+            <small class="formerror"></small>
+          </div>
+          
+
+          <div class="add-btn-div">
+            <button class="teacher-add-btn btn" type="submit">Register</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="/javascripts/stureg.js"></script>
+
+
+</body>
+
+</html>

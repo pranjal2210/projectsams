@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Students Attendance Management System</title>
+  <script src="https://kit.fontawesome.com/f6549854b5.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+  <link rel="icon" type="image/x-icon" href="/images/logo.ico">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/notice.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="/images/logo.jpg">
+      <h2><span>Students Attendance Management System - </span>SAMS</h2>
+    </div>
+    <nav class="navbar">
+      <a href="/landing/home">Logout<i class="fa-solid fa-arrow-right-from-bracket"></i></i></a>
+    </nav>
+  </header>
+  <!-- HEADER -->
+
+  <div class="notice-container">
+    <a href="/adminpage/dashboard" class="prevpage"><< Dashboard</a>
+    <div class="notice-form">
+      <div class="notice-title">
+        <h2>Issue Notice</h2>
+      </div>
+
+      <div class="notice-box">
+        <div class="notice-option">
+          <button class="btn2 active" id="all-notice-btn">To all users</button>
+          <button class="btn2" id="teacher-notice-btn">To Teachers</button>
+          <button class="btn2" id="student-notice-btn">To Students</button>
+        </div>
+        <div class="all-notice-form" id="all-notice-form">
+
+          <form action="toallnotice" method="POST">
+            <input type="hidden" name="forWhom" value="All">
+            <label for="noticetext">Notice:</label>
+            <input type="date" name="noticeDate" id="allDate" style="display: none;">
+            <textarea id="allText" maxlength="600" name="noticetext" oninput="allTextCount()" required></textarea>
+            <p><span id="allTextCount">0</span>/600</p>
+            <button type="submit" class="btn issue-btn">Issue</button>
+          </form>
+          
+        </div>
+        
+        <div class="teacher-notice-form" id="teacher-notice-form">
+          <form action="toteachernotice" method="POST">
+            <input type="hidden" name="forWhom" value="Teachers">
+            <label for="noticetext">Teacher Notice:</label>
+            <input type="date" name="noticeDate" id="teacherDate" style="display: none;">
+            <textarea id="teacherText" maxlength="600" name="noticetext" oninput="teacherTextCount()"></textarea>
+            <p><span id="teacherTextCount">0</span>/600</p>
+            <button type="submit" class="btn issue-btn">Issue</button>
+          </form>
+        </div>
+
+        <div class="student-notice-form" id="student-notice-form">
+          <form action="tostudentnotice" method="POST">
+            <input type="hidden" name="forWhom" value="Students">
+            <label for="noticetext">Student Notice:</label>
+            <input type="date" name="noticeDate" id="studentDate" style="display: none;">
+            <textarea id="studentText" maxlength="600" name="noticetext" oninput="studentTextCount()"></textarea>
+            <p><span id="studentTextCount">0</span>/600</p>
+            <button type="submit" class="btn issue-btn">Issue</button>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="prev-notice-box">
+        <h2 class="prev-notice-title">Previous Notices
+          <hr>
+        </h2>
+        
+        <div class="scroll-contrainer" style="max-height: 24rem; overflow: auto;">
+          <table class="content-table">
+          <thead>
+            <tr>
+              <th>S. No.</th>
+              <th>Issued Date</th>
+              <th>Notice</th>
+              <th style="text-align: center;">Issued for</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% let serialNumber=1; %>
+              <% if(noticeData.length> 0){ %>
+                <% noticeData.forEach((row)=> { %>
+                  <tr>
+                    <td>
+                      <%= serialNumber %>
+                    </td>
+                    <td>
+                      <% const formattedDate = new Date(row.noticedate).toLocaleDateString("es-CL"); %>
+                      <%= formattedDate %>
+                    </td>
+                    <td class="noticeCol">
+                      <%= row.notice %>
+                    </td>
+                    <td style="text-align: center;">
+                      <%= row.forwhom %>
+                    </td>
+  
+                    <td class="action-btn">
+                      <a href="deletenotice/<%= row.noticeID %>" onclick="return confirm('Are you sure you want to delete?')">
+                        <i class="fa-regular fa-trash-can student-delete"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <% serialNumber++; %>  
+                  <% }) %>
+                  <% } else { %>
+                    <h3>Data not found</h3>
+                  <% } %>
+          </tbody>
+          </table>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+<script src="/javascripts/notice.js"></script>
+
+</body>
+
+</html>
