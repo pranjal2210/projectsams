@@ -17,9 +17,11 @@ router.post('/adminauth', function (req, res) {
 
   pool.query(`SELECT * FROM adminlogin where admin_email='${adminUsername}' and admin_password='${adminPassword}'`, function (error, rows, fields) {
     if (rows.length > 0) {
+      console.log('Success');
       res.redirect('/adminpage/dashboard');
     }
     else {
+      console.log('Not Success');
       res.render('adminlogin', {message: "INVALID CREDENTIALS"});
     }
   });
